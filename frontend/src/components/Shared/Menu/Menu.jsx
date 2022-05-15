@@ -1,9 +1,10 @@
-import React from 'react'
+import MenuItem from "./MenuItem"
+import items from "./data/menu.json"
 
-const Menu = () => {
-  return (
-    <div>Menu</div>
-  )
+export default function Menu(){
+    return (
+        <div className="menu">
+          { items.map((item, index) => <MenuItem key={index} item={item} />) }
+        </div>
+    )
 }
-
-export default Menu
