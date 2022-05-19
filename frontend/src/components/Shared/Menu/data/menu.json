@@ -1,0 +1,106 @@
+[
+    
+    {
+        "title": "Bảng",
+        "icon": "bi-collection",
+        "path": "/tableOfWorkSpaces"
+    },
+    {
+        "title": "Mẫu",
+        "icon": "bi-columns-gap",
+        "path": "/templates"
+    },
+    {
+        "title": "Trang chủ",
+        "icon": "bi-house",
+        "path": "/home"
+    },
+    {
+        "title": "Các không gian làm việc",
+        "icon": "bi-person-workspace",
+        "childrens": [
+            
+            {
+                "title": "Workspace1",
+                "icon": "bi-arrow-right-square",
+                "path": "/workspaces/workspace1",
+                "childrens": [
+                    {
+                        "title": "Bảng",
+                        "icon": "bi-collection"
+                    },
+                    {
+                        "title": "Điểm nổi bật",
+                        "icon": "bi-heart"
+                    },
+                    {
+                        "title": "Hình",
+                        "icon": "bi-images"
+                    },
+                    {
+                        "title": "Thành viên",
+                        "icon": "bi-people"
+                    },
+                    {
+                        "title": "Cài đặt",
+                        "icon": "bi-gear"
+                    }
+                ]
+            },
+            {
+                "title": "Workspace2",
+                "icon": "bi-arrow-right-square",
+                "path": "/workspaces/workspace2",
+                "childrens": [
+                    {
+                        "title": "Bảng",
+                        "icon": "bi-collection"
+                    },
+                    {
+                        "title": "Điểm nổi bật",
+                        "icon": "bi-heart"
+                    },
+                    {
+                        "title": "Hình",
+                        "icon": "bi-images"
+                    },
+                    {
+                        "title": "Thành viên",
+                        "icon": "bi-people"
+                    },
+                    {
+                        "title": "Cài đặt",
+                        "icon": "bi-gear"
+                    }
+                ]
+            },
+            {
+                "title": "Workspace3",
+                "icon": "bi-arrow-right-square",
+                "path": "/workspaces/workspace3",
+                "childrens": [
+                    {
+                        "title": "Bảng",
+                        "icon": "bi-collection"
+                    },
+                    {
+                        "title": "Điểm nổi bật",
+                        "icon": "bi-heart"
+                    },
+                    {
+                        "title": "Hình",
+                        "icon": "bi-images"
+                    },
+                    {
+                        "title": "Thành viên",
+                        "icon": "bi-people"
+                    },
+                    {
+                        "title": "Cài đặt",
+                        "icon": "bi-gear"
+                    }
+                ]
+            }
+        ]
+    }
+]
