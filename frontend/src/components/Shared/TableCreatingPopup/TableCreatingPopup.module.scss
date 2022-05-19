@@ -1,0 +1,294 @@
+.tableCreatingPopup{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    background-color: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
+    width: 310px;
+}
+.headerTableCreatingPopup{
+    margin-bottom: 8px;
+    padding: 0 12px;
+    position: relative;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 12px 1fr 12px;
+}
+.titleHeader{
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    grid-column: 1 / span 3;
+    grid-row: 1;
+    border-bottom: 1px solid rgba(9, 30, 66, 0.13);
+}
+.bodyTableCreatingPopup{
+    max-height: 570px;
+    padding: 12px
+}
+.prototypeBackground{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 8px;
+}
+.backgroundImgPrototype{
+    width: 200px;
+    height: 120px;
+    background: none;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 3px;
+    box-shadow: 0 7px 15px rgb(0 0 0 / 15%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(https://images.unsplash.com/photo-1652541594278-d7dbc83be9d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNjUyOTQyMTQ2&ixlib=rb-1.2.1&q=80&w=400);
+}
+.chooseBackground{
+    padding-bottom: 4px;
+}
+label, legend{
+    color: #5e6c84;
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    margin-bottom: 4px;
+    margin-top: 12px;
+}
+.background{
+    display: flex;
+    justify-content: space-between;
+}
+.background:first-child{
+    padding-bottom: 8px;
+}
+ol, ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.backgroundImg{
+    width: 64px;
+    height: 40px;
+}
+.backgroundColor{
+    width: 40px;
+    height: 32px;
+}
+
+.buttonChooseBackgroundImg{
+    align-items: center;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 3px;
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    margin: 0;
+    min-height: 0;
+    outline: 0;
+    padding: 0;
+    position: relative;
+    line-height: 0;
+    width: 100%;
+    cursor: pointer; 
+    background-image: url(https://images.unsplash.com/photo-1652541594278-d7dbc83be9d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNjUyOTQyMTQ2&ixlib=rb-1.2.1&q=80&w=400);
+}
+.buttonChooseBackgroundImg:hover::before{
+    background: rgba(0, 0, 0, 0.15);
+    position: absolute;
+    bottom: 0;
+    content: '';
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0;
+    border-radius: 3px;
+    z-index: 0;
+}
+.buttonChooseBackgroundColor{
+    align-items: center;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 3px;
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    margin: 0;
+    min-height: 0;
+    outline: 0;
+    padding: 0;
+    position: relative;
+    line-height: 0;
+    width: 100%;
+    cursor: pointer;
+    background-color: rgb(0, 121, 191);
+}
+.buttonChooseBackgroundColor:hover::before{
+    background: rgba(0, 0, 0, 0.15);
+    position: absolute;
+    bottom: 0;
+    content: '';
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0;
+    border-radius: 3px;
+    z-index: 0;
+}
+.buttonChooseBackgroundColorExtend{
+    align-items: center;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 3px;
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    margin: 0;
+    min-height: 0;
+    outline: 0;
+    padding: 0;
+    position: relative;
+    line-height: 0;
+    width: 100%;
+    cursor: pointer;
+}
+.buttonChooseBackgroundColorExtend:hover::before{
+    background: rgba(0, 0, 0, 0.15);
+    position: absolute;
+    bottom: 0;
+    content: '';
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0;
+    border-radius: 3px;
+    z-index: 0;
+}
+.titleTable{
+    color: #5e6c84;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 700;
+    display: flex;
+    flex-flow: column;
+}
+.noteImportantSpan{
+    color: #eb5a46;
+    margin-left: 2px;
+}
+.inputField{
+    margin-top: 2px;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    color: #172b4d;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    transition-property: background-color, border-color, box-shadow;
+    transition-duration: 85ms;
+    transition-timing-function: ease;
+    border-radius: 3px;
+    padding: 8px 12px;
+    box-shadow: inset 0 0 0 2px #dfe1e6;
+    background-color: #fafbfc;
+    width: 100%;
+    margin-bottom: 0;
+    box-shadow: inset 0 0 0 2px #eb5a46;
+}
+.inputField:hover{
+    box-shadow: inset 0 0 0 2px #eb5a46;
+    background: rgba(0, 0, 0, 0.15);
+}
+.inputField:focus{
+    background-color: #ffffff;
+    box-shadow: inset 0 0 0 2px #0079bf;
+}
+.notification{
+    display: flex;
+    flex-direction: row;
+}
+.notificationIcon{
+    margin-right: 8px;
+}
+p {
+    margin: 0 0 8px;
+}
+.notificationText{
+    margin-top: 16px;
+}
+.buttonStartToTryFree{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 3px;
+    box-sizing: border-box;
+    display: inline-flex;
+    overflow: hidden;
+    padding: 6px 12px 6px 6px;
+    position: relative;
+    text-decoration: none;
+    background: #EDDBF4;
+}
+.buttonStartToTryFree:hover{
+    background: #DFC0EB;
+}
+.textOfStartToTryFree{
+    padding-top:4px;
+    color: #42526E;
+}
+.buttonCreateNew{
+    background-color: rgba(9, 30, 66, 0.04);
+    box-shadow: none;
+    border: none;
+    color: #a5adba;
+    cursor: not-allowed;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
+    width: 100%;
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    border-radius: 3px;
+    box-sizing: border-box;
+    display: inline-flex;
+    overflow: hidden;
+    padding: 6px 12px 6px 6px;
+    position: relative;
+    text-decoration: none;
+}
+.buttonStartWithTemplate{
+    margin-top: 12px;
+    width: 100%;
+    color: #172b4d;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 6px 12px;
+    text-decoration: none;
+    white-space: normal;
+    background-color: rgba(9, 30, 66, 0.04);
+    box-shadow: none;
+    border: none;
+    transition-property: background-color, border-color, box-shadow;
+    transition-duration: 85ms;
+    transition-timing-function: ease;
+    margin-bottom: 20px;
+}
