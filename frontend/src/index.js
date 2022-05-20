@@ -6,6 +6,6 @@ import WorlSpaceCreatingPopup from './components/Shared/WorlSpaceCreatingPopup/W
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <WorlSpaceCreatingPopup />
+    <App/>
   </React.StrictMode>
 );
