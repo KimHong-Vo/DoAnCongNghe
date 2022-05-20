@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import './Menu.scss'
 export default function MenuItem({item}){
     const [open, setOpen] = useState(false)
 
