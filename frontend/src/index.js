@@ -6,8 +6,11 @@ import App from './App'
 // import TablesOfWorkSpace from './pages/Home/TablesOfWorkSpace/TablesOfWorkSpace';
 // import WorlSpaceCreatingPopup from './components/Shared/WorlSpaceCreatingPopup/WorlSpaceCreatingPopup'
 
+import './App.scss';
+
 ReactDOM.render(
   <React.StrictMode>
-    <App/>
-  </React.StrictMode>, document.getElementById('root')
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
 );
