@@ -1,4 +1,4 @@
-package com.springboot.workmanagement.repositories.workSpace;
+package com.springboot.workmanagement.repositories.Authorization;
 
 import org.springframework.data.repository.CrudRepository;
 
