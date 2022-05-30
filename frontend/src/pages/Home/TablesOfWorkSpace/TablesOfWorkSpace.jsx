@@ -34,7 +34,7 @@ function TablesOfWorkSpace() {
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         <Grid item xs={2} sm={4} md={3}>
-          <Button>
+          <Button className="button-board">
             <a
               className="board-title"
               href="action"
