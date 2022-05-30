@@ -19,10 +19,10 @@ const WorlSpaceCreatingPopup = () => {
       <Grid className='container' container columns={{ xs: 4, sm: 8, md: 12 }}>
           <Grid item xs={4} sm={8} md={8} key={0} className= 'leftGrid'>
             <div className='leftItem'>
-              {/* <div className='title'>
+              <div className='title'>
                 <h2>Let buil a work space</h2>
                 <h4>Increating your productive by helping everyone can easyly access to tables in workspace</h4>
-              </div> */}
+              </div>
               <div className='form'>
                 <form className='createWSForm' onSubmit={handleSubmitBtn}>
                   <div className='wsName'>
