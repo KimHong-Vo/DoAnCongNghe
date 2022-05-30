@@ -1,22 +1,26 @@
-*{
+* {
   margin: 0;
   padding: 0;
- 
+
   box-sizing: border-box;
 }
 
-html, body{
+html,
+body {
   height: 100vh;
 }
-body{
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, "Droid Sans", "Helvetica Neue", sans-serif;
   font-size: 14px;
-  font-weight:700;
+  font-weight: 700;
   line-height: 20px;
-  color:rgb(9,30,66);;
+  color: rgb(9, 30, 66);
+  ;
   background-color: #e0e7ec;
 }
-.btn{
+
+.btn {
   margin: 0 auto;
   border: none;
   outline: none;
@@ -28,10 +32,13 @@ body{
   text-transform: uppercase;
   border-radius: 3px;
   background-color: #61BD4F;
-  color:white;
+  color: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.SignUp{
+.SignUp {
   width: 30%;
   flex-shrink: 0;
   height: 100%;
@@ -44,13 +51,16 @@ body{
   margin-top: 10%;
   padding: 25px 40px;
 }
-a{
-  color:#2a84b9;
+
+a {
+  color: #2a84b9;
 }
-.span{
+
+.span {
   padding: 10px 10px 10px 10px;
   text-align: center;
 }
-.centerLogin{
+
+.centerLogin {
   text-align: center;
 }
