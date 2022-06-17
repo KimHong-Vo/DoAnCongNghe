@@ -1,5 +1,6 @@
 package com.springboot.workmanagement.entities.workSpace;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -64,8 +65,36 @@ public class WorkSpace{
 	}
 	public void setDescriptionOfWorkSpace(String descriptionOfWorkSpace) {
 		this.descriptionOfWorkSpace = descriptionOfWorkSpace;
+
+public class WorkSpace implements Serializable{
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String name;
+	private String description;
+	
+	public WorkSpace() {}
+	public WorkSpace(String newName, String newDescription) {
+		this.name = newName;
+		this.description = newDescription;
+		
+
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getId() {
+		return this.id;
 	}
 
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "id: " + this.id + "- name: " + this.name + "- description: " + this.description;
+	}
 	
 	
 }
