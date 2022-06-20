@@ -1,238 +1,101 @@
 
-import React from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 
 import PermIdentitySharpIcon from "@mui/icons-material/PermIdentitySharp";
 import "./TablesOfWorkSpace.modules.scss";
-import Background from "./meeting.jpg";
+//import Background from "./meeting.jpg";
 import PeopleTwoToneIcon from "@mui/icons-material/PeopleTwoTone";
 import { Button } from "@mui/material";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import StarIcon from "@mui/icons-material/Star";
+//import StarBorderIcon from "@mui/icons-material/StarBorder";
+//import StarIcon from "@mui/icons-material/Star";
+import axios from "axios";
+import TablesOfWorkSpaceItem from "./TablesOfWorkSpaceItem";
 
 function TablesOfWorkSpace() {
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <div className="title1">
-        <div className="content1">
-          <div className="iconFont">
-            <span>
-              <PermIdentitySharpIcon />
-            </span>
-          </div>
-          <h3>Các bảng của bạn</h3>
-        </div>
-        <div>
-          <ul className="boardpagesSeaction"></ul>
-        </div>
-      </div>
+  const [listTableState, setListTableState] = useState([])
+  useEffect(() => {
+    const getTable = async () => {
+      try {
+        const res = await axios.get(
+          "https://jsonplaceholder.typicode.com/posts?_limit=4"
+        )
+        //console.log(res.data)
+        setListTableState(res.data)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    getTable()
+  }, [])
 
-      <Grid
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
-      >
-        <Grid item xs={2} sm={4} md={3}>
-          <Button className="button-board">
-            <a
-              className="board-title"
-              href="action"
-              style={{ backgroundImage: `url(${Background})` }}
-            >
-              <span className="board-title-fade"></span>
-              <div className="board-title-detail">
-                <div
-                  title="Phần mềm nghe nhạc quốc tế"
-                  className="board-title-detail-name"
-                >
-                  <div>Phần mềm nghe nhạc quốc tế</div>
-                </div>
-                <div className="board-title-detail-sub-container">
-                  <span className="board-title-option">
-                    <span
-                      title="Bấm để gắn dấu sao bảng này. Bảng này sẽ được thêm vào danh sách được đánh dấu sao của bạn."
-                      className="board-title-option-icon"
-                    >
-                      <StarBorderIcon className="editStar"></StarBorderIcon>
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </a>
-          </Button>
-        </Grid>
-        <Grid item xs={2} sm={4} md={3}>
-          <Button>
-            <a
-              className="board-title"
-              href="action"
-              style={{ backgroundImage: `url(${Background})` }}
-            >
-              <span className="board-title-fade"></span>
-              <div className="board-title-detail">
-                <div
-                  title="Phần mềm nghe nhạc quốc tế"
-                  className="board-title-detail-name"
-                >
-                  <div>Phần mềm nghe nhạc quốc tế</div>
-                </div>
-                <div className="board-title-detail-sub-container">
-                  <span className="board-title-option">
-                    <span
-                      title="Bấm để gắn dấu sao bảng này. Bảng này sẽ được thêm vào danh sách được đánh dấu sao của bạn."
-                      className="board-title-option-icon"
-                    >
-                      <StarIcon className="editStar-yellow"></StarIcon>
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </a>
-          </Button>
-        </Grid>
-        <Grid item xs={2} sm={4} md={3}>
-          <Button>
-            <a
-              className="board-title"
-              href="action"
-              style={{ backgroundImage: `url(${Background})` }}
-            >
-              <span className="board-title-fade"></span>
-              <div className="board-title-detail">
-                <div
-                  title="Phần mềm nghe nhạc quốc tế"
-                  className="board-title-detail-name"
-                >
-                  <div>Phần mềm nghe nhạc quốc tế</div>
-                </div>
-                <div className="board-title-detail-sub-container">
-                  <span className="board-title-option">
-                    <span
-                      title="Bấm để gắn dấu sao bảng này. Bảng này sẽ được thêm vào danh sách được đánh dấu sao của bạn."
-                      className="board-title-option-icon"
-                    >
-                      <StarBorderIcon className="editStar"></StarBorderIcon>
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </a>
-          </Button>
-        </Grid>
-        <Grid item xs={2} sm={4} md={3}>
-          <Button>
-            <a
-              className="board-title"
-              href="action"
-              style={{ backgroundImage: `url(${Background})` }}
-            >
-              <span className="board-title-fade"></span>
-              <div className="board-title-detail">
-                <div
-                  title="Phần mềm nghe nhạc quốc tế"
-                  className="board-title-detail-name"
-                >
-                  <div>Phần mềm nghe nhạc quốc tế</div>
-                </div>
-                <div className="board-title-detail-sub-container">
-                  <span className="board-title-option">
-                    <span
-                      title="Bấm để gắn dấu sao bảng này. Bảng này sẽ được thêm vào danh sách được đánh dấu sao của bạn."
-                      className="board-title-option-icon"
-                    >
-                      <StarIcon className="editStar-yellow"></StarIcon>
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </a>
-          </Button>
-        </Grid>
-      </Grid>
-      <div></div>
-      <div className="title2">
-        <div className="content1">
-          <div className="iconFont">
-            <span>
-              <PeopleTwoToneIcon />
-            </span>
+  return (
+
+    <Fragment>
+
+      <Box sx={{ flexGrow: 1 }}>
+        <div className="title1">
+          <div className="content1">
+            <div className="iconFont">
+              <span>
+                <PermIdentitySharpIcon />
+              </span>
+            </div>
+            <h3>Các bảng của bạn</h3>
           </div>
-          <h3>Tất cả các bảng trong Không gian làm việc này</h3>
+          <div>
+            <ul className="boardpagesSeaction"></ul>
+          </div>
         </div>
-      </div>
-      <Grid
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
-      >
         <Grid item xs={2} sm={4} md={3}>
-          <Button>
-            <a
-              className="board-title"
-              href="action"
-              style={{ backgroundImage: `url(${Background})` }}
-            >
-              <span className="board-title-fade"></span>
-              <div className="board-title-detail">
-                <div
-                  title="Phần mềm nghe nhạc quốc tế"
-                  className="board-title-detail-name"
-                >
-                  <div>Phần mềm nghe nhạc quốc tế</div>
-                </div>
-                <div className="board-title-detail-sub-container">
-                  <span className="board-title-option">
-                    <span
-                      title="Bấm để gắn dấu sao bảng này. Bảng này sẽ được thêm vào danh sách được đánh dấu sao của bạn."
-                      className="board-title-option-icon"
-                    >
-                      <StarBorderIcon className="editStar"></StarBorderIcon>
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </a>
-          </Button>
-        </Grid>
-        <Grid item xs={2} sm={4} md={3}>
-          <Button>
-            <a
-              className="board-title"
-              href="action"
-              style={{ backgroundImage: `url(${Background})` }}
-            >
-              <span className="board-title-fade"></span>
-              <div className="board-title-detail">
-                <div
-                  title="Phần mềm nghe nhạc quốc tế"
-                  className="board-title-detail-name"
-                >
-                  <div>Phần mềm nghe nhạc quốc tế</div>
-                </div>
-                <div className="board-title-detail-sub-container">
-                  <span className="board-title-option">
-                    <span
-                      title="Bấm để gắn dấu sao bảng này. Bảng này sẽ được thêm vào danh sách được đánh dấu sao của bạn."
-                      className="board-title-option-icon"
-                    >
-                      <StarBorderIcon className="editStar"></StarBorderIcon>
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </a>
-          </Button>
-        </Grid>
-        <Grid item xs={2} sm={4} md={3}>
+          {listTableState.map(table => {
+            return (
+              <TablesOfWorkSpaceItem
+                key={table.id}
+                tableProps={table}
+              />)
+          })}
           <Button>
             <a className="board-title background-table" href="action">
               <span className="createTable">Tạo bảng mới</span>
             </a>
           </Button>
         </Grid>
-      </Grid>
-    </Box>
+        {/* <Grid item xs={2} sm={4} md={3}>
+          
+        </Grid> */}
+        <div className="title2">
+          <div className="content1">
+            <div className="iconFont">
+              <span>
+                <PeopleTwoToneIcon />
+              </span>
+            </div>
+            <h3>Tất cả các bảng trong Không gian làm việc này</h3>
+          </div>
+        </div>
+        <Grid item xs={2} sm={4} md={3}>
+          {listTableState.map(table => {
+            return (
+              <TablesOfWorkSpaceItem
+                key={table.id}
+                tableProps={table}
+              />)
+          })}
+
+          <Button>
+            <a className="board-title background-table" href="action">
+              <span className="createTable">Tạo bảng mới</span>
+            </a>
+          </Button>
+
+        </Grid>
+
+
+      </Box>
+
+    </Fragment>
   );
 }
 export default TablesOfWorkSpace;
