@@ -19,13 +19,14 @@ public class WorkSpaceController{
 	WorkSpaceRepository workSpaceRepository;
 	@GetMapping("/myWorkspace")
 	public WorkSpace getMyWorkspace() {
-		return new WorkSpace("This is my workspace", "This is a workspace is automatically generate");
+//		return new WorkSpace("This is my workspace", "This is a workspace is automatically generate");
+		return new WorkSpace();
 	}
 	
 	@GetMapping("/insertWorkspace")
 	public String insertWorkspace(@RequestParam(value = "name") String name, @RequestParam(value = "des") String description) {
 //		dao.insertWorkSpace(name, description);
-		workSpaceRepository.save(new WorkSpace(name, description));
+//		workSpaceRepository.save(new WorkSpace(name, description));
 		return "success";
 	}
 	
