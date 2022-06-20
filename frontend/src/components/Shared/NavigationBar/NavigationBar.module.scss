@@ -4,7 +4,6 @@ $hover-bg: #4297c2;
 .mainContainer {
     width: 100%;
     height: 45px;
-    margin: 10px auto;
     @include flex(center, flex-start);
     position: relative;
     box-sizing: border-box;
