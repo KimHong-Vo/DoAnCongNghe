@@ -23,6 +23,7 @@ public class UserLogin {
 
 	public UserLogin() {
 		super();
+		
 	}
 
 	public String getEmail() {
