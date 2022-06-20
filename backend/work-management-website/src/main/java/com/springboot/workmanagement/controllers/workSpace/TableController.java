@@ -1,5 +1,6 @@
 package com.springboot.workmanagement.controllers.workSpace;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -28,20 +29,20 @@ public class TableController {
 	WorkSpaceRepository wsr;
 	
 	@PostMapping("/saveTable/{wsId}")
-	public ResponseEntity<String> saveTable(@RequestBody Table table, @PathVariable("wsId") int wsId) {
+	public ResponseEntity<Table> saveTable(@RequestBody Table table, @PathVariable("wsId") int wsId) {
 		//https://docs.atlassian.com/hibernate2/2.1.8/reference/example-parentchild.html
-		System.out.println(table.toString());
-		WorkSpace ws = wsr.findById(wsId).get();
 		
+		WorkSpace ws = wsr.findById(wsId).get();		
 		if(ws== null) {
 			System.out.println("WS not found");
-			return new ResponseEntity<String>("Fail", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Table>( HttpStatus.NOT_FOUND);
 		}
 		else {
 			System.out.println(ws.toString());
 			table.setWorkspace(ws);
-			tableService.saveTable(table);
-			return new ResponseEntity<String>("OK", HttpStatus.OK);
+			table.setCreateDate(Calendar.getInstance().getTime());
+			Table t = tableService.saveTable(table);
+			return new ResponseEntity<Table>(t, HttpStatus.OK);
 		}
 	}
 	

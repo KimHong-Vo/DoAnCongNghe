@@ -32,10 +32,11 @@ public class CommentController {
 	
 	@PostMapping("/saveComment")
 	public ResponseEntity<Comment> saveComment(@RequestBody Comment comment){
+		if(comment.getCreateDate()==null) comment.setCreateDate(Calendar.getInstance().getTime());
 		Comment cm = commentRepository.save(comment);
 		if(cm == null)
 			return null;
-		else
+		else 
 			return new ResponseEntity<>(cm, HttpStatus.OK);
 	}
 	@GetMapping("/getComment")
@@ -50,7 +51,7 @@ public class CommentController {
 	@PostMapping("/comment/saveFile")
 	public String uploadFile(@RequestBody MultipartFile file){// return path of file
 		//check file empty
-		if(file.isEmpty()) return "Emty file";
+		if(file == null || file.isEmpty()) return "Emty file";
 		
 		//save file if not empty
 		String filePath = storageService.store(file);

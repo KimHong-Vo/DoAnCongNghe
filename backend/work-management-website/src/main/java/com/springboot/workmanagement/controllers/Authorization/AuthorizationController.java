@@ -2,11 +2,13 @@ package com.springboot.workmanagement.controllers.Authorization;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.springboot.workmanagement.repositories.Authorization.UserRepository;
-import com.springboot.workmanagement.entities.workSpace.UserLogin;
+import com.springboot.workmanagement.entities.workSpace.User;
 
 
 
@@ -15,11 +17,11 @@ import com.springboot.workmanagement.entities.workSpace.UserLogin;
 public class AuthorizationController {
 	@Autowired
 	UserRepository repository;
-	Iterable<UserLogin> users;
-	// mở form đăng nhập
-	// khai báo đường dẫn đến trang đăng nhập
+	Iterable<User> users;
+	// má»Ÿ form Ä‘Äƒng nháº­p
+	// khai bÃ¡o Ä‘Æ°á»�ng dáº«n Ä‘áº¿n trang Ä‘Äƒng nháº­p
 
-	// modelmap dùng để đưa dữ liệu lên trang login
+	// modelmap dÃ¹ng Ä‘á»ƒ Ä‘Æ°a dá»¯ liá»‡u lÃªn trang login
 //	public String logIn(@ModelAttribute(value = "tk") UserLogin tk, ModelMap result, HttpSession session) {
 //		result.put("tk", new UserLogin());
 //		if(tk.getUsername().equals("doanthuc")&&tk.getPassword().equals("123")) {
@@ -35,11 +37,11 @@ public class AuthorizationController {
 
 	// xu ly dang nhap
 	// https://localhost:8080/account/login
-	@GetMapping("/login")
-	public UserLogin logIn(@RequestParam("email") String email, @RequestParam("password") String password) {
+	@PostMapping("/login")
+	public User logIn(@RequestBody User u) {
 		users = repository.findAll();
-		for (UserLogin user : users) {
-			if (user.getEmail().equals(email)&&user.getPassword().equals(password)) {
+		for (User user : users) {
+			if (user.equals(u)) {
 				return user;
 			}
 		}

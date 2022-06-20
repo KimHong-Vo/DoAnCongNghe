@@ -1,38 +1,34 @@
 package com.springboot.workmanagement.entities.workSpace;
-
-import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@Table(name="WorkSpace")
-public class WorkSpace implements Serializable{
-public class WorkSpace implements Serializable {
+public class WorkSpace{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 	private String name;
 	private String description;
 	private String logoPath;
 	
+	
+	
 	public WorkSpace() {}
-	public WorkSpace(String newName, String newDescription) {
-		this.name = newName;
-		this.description = newDescription;
-		
+	public WorkSpace(String name, String description) {
+		this.name = name;
+		this.description = description;	
 
 	}
+	
+	
 
-	public WorkSpace() {
-	}
-
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
