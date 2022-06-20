@@ -8,15 +8,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+@Table(name="WorkSpace")
 public class WorkSpace implements Serializable{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name;
 	private String description;
 	private String logoPath;
 	
 	public WorkSpace() {}
+	public WorkSpace(String newName, String newDescription) {
+		this.name = newName;
+		this.description = newDescription;
+		
+
+	}
 	
 	public int getId() {
 		return id;
