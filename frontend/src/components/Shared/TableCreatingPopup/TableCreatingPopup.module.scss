@@ -85,6 +85,7 @@ ol, ul{
     background-size: cover;
     border-radius: 3px;
     box-shadow: none;
+    border-style: none;
     color: rgba(255, 255, 255, 0.4);
     display: flex;
     height: 100%;
@@ -97,7 +98,6 @@ ol, ul{
     line-height: 0;
     width: 100%;
     cursor: pointer; 
-    background-image: url(https://images.unsplash.com/photo-1652541594278-d7dbc83be9d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNjUyOTQyMTQ2&ixlib=rb-1.2.1&q=80&w=400);
 }
 .buttonChooseBackgroundImg:hover::before{
     background: rgba(0, 0, 0, 0.15);
@@ -117,6 +117,7 @@ ol, ul{
     background-size: cover;
     border-radius: 3px;
     box-shadow: none;
+    border-style: none;
     color: rgba(255, 255, 255, 0.4);
     display: flex;
     height: 100%;

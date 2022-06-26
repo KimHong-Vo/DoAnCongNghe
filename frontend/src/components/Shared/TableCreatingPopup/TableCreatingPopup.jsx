@@ -7,13 +7,22 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ClearIcon from '@mui/icons-material/Clear';
 import MoreHoriz from '@mui/icons-material/MoreHoriz';
 import WorkIcon from '@mui/icons-material/Work';
+import { useState } from 'react';
 
 
 const TableCreatingPopup = () => {
+  const backgroundImage= [
+    "https://images.unsplash.com/photo-1652541594278-d7dbc83be9d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNjUyOTQyMTQ2&ixlib=rb-1.2.1&q=80&w=400",
+    "https://images.unsplash.com/photo-1656094829222-fd695b4ba6e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNjU2MjU1MTkw&ixlib=rb-1.2.1&q=80&w=400",
+    "https://images.unsplash.com/photo-1656119651638-9825fe739131?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjU2MjU1MTkw&ixlib=rb-1.2.1&q=80&w=400",
+    "https://images.unsplash.com/photo-1656067638332-1d189bf81079?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDN8MzE3MDk5fHx8fHwyfHwxNjU2MjU1MTkw&ixlib=rb-1.2.1&q=80&w=400"
+  ]
 
+  const backgroundImageColor =["green", "red", "blue", "pink", "orange", "yellow"]
   const elementWorkSpace = ['WorkSpace 1', 'WorkSpace 2', 'WorkSpace 3', 'WorkSpace 4']
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -28,6 +37,9 @@ const TableCreatingPopup = () => {
   const handleChange = (event) => {
     setPermission(event.target.value);
   };
+ const [backgroundImg, setBackgroundImg] = useState(backgroundImage);
+
+ 
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -67,23 +79,18 @@ const TableCreatingPopup = () => {
               <div> <label for="background-picker">Phông nền</label> </div>
               <div id="background-picker">
                 <ul className={Styles.background}>
-                  {[...Array(4)].map((x, i) =>
+                  {backgroundImg.map((item,i) =>
                     <li className={Styles.backgroundImg} key={i}>
-                      <button className={Styles.buttonChooseBackgroundImg}></button>
+                        <button className={Styles.buttonChooseBackgroundImg} style={{backgroundImage:`url(${item})` }}></button> 
                     </li>
                   )}
                 </ul>
                 <ul className={Styles.background}>
-                  {[...Array(5)].map((x, i) =>
+                  {backgroundImageColor.map((x, i) =>
                     <li className={Styles.backgroundColor} key={i}>
-                      <button className={Styles.buttonChooseBackgroundColor}></button>
+                      <button  className={Styles.buttonChooseBackgroundColor} style ={{backgroundColor: `${x}`}}></button>
                     </li>
                   )}
-                  <li className={Styles.backgroundColor}>
-                    <button className={Styles.buttonChooseBackgroundColorExtend}>
-                      <MoreHoriz sx={{ color: grey[700] }}></MoreHoriz>
-                    </button>
-                  </li>
                 </ul>
               </div>
             </div>
