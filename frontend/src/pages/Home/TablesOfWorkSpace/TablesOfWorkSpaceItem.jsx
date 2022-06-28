@@ -17,8 +17,8 @@ const TablesOfWorkSpaceItem = props => {
       {/* <span className="board-title-fade"></span>  */}
       <a href={table.link}>
         <div className="board-title-detail">
-          <div title={table.tittle} className="board-title-detail-name">
-            <div>{table.tittle}</div>
+          <div title={table.title} className="board-title-detail-name">
+            <div>{table.title}</div>
           </div>
           <div className="board-title-detail-sub-container">
             <span className="board-title-option">
