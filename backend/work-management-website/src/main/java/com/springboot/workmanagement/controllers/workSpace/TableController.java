@@ -3,8 +3,6 @@ package com.springboot.workmanagement.controllers.workSpace;
 import java.util.Calendar;
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.springboot.workmanagement.entities.workSpace.Table;
-//import com.springboot.workmanagement.entities.workSpace.Table;
 import com.springboot.workmanagement.entities.workSpace.WorkSpace;
-import com.springboot.workmanagement.repositories.workSpace.TableRepository;
 import com.springboot.workmanagement.repositories.workSpace.TableService;
 import com.springboot.workmanagement.repositories.workSpace.WorkSpaceRepository;
 
