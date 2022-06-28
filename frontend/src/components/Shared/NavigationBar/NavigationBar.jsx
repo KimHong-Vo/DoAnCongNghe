@@ -6,6 +6,8 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import AvatarText from "./AvatarText";
+import { Modal } from "@mui/material";
+import TableCreatingPopup from "../TableCreatingPopup/TableCreatingPopup";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -49,6 +51,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const NavigationBar = () => {
+  const [openCreatingTable, setOpenCreatingTable] = React.useState("none");
+
   return (
     <div className={styles.mainContainer}>
       <span className={styles.appSwitcher}>
@@ -80,12 +84,9 @@ const NavigationBar = () => {
           Mẫu
         </Button>
       </div>
-      <Button
-        sx={{ bgcolor: "#014a75", padding: "5px 15px" }}
-        variant="contained"
-      >
-        Tạo Mới
-      </Button>
+      <button onClick={() => setOpenCreatingTable("block")} className="text-white ml-10 px-4 py-2 bg-[#2b607f] drop-shadow-lg rounded-md hover:bg-gray-500">
+        TẠO MỚI
+      </button>
 
       <div className={styles.search}>
         <Search>
@@ -103,13 +104,17 @@ const NavigationBar = () => {
         <icons.informationIcon />
       </div>
 
-      <div className= {styles.noti}>
+      <div className={styles.noti}>
         <icons.notificationIcon />
       </div>
 
-      <div className= {styles.avatar}>
+      <div className={styles.avatar}>
         <AvatarText nameText="Dang Kiet" />
       </div>
+     
+     <div style={{display: `${openCreatingTable}`}}>
+        <TableCreatingPopup />
+     </div>
     </div>
   );
 };

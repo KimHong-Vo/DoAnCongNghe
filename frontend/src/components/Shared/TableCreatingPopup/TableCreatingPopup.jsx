@@ -10,7 +10,6 @@ import {
   Select,
   Box,
   MenuItem,
-  InputLabel,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";

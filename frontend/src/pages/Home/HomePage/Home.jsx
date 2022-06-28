@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import NavigationBar from "../../../components/Shared/NavigationBar/NavigationBar";
 import Menu from "../../../components/Shared/Menu/Menu";
 import TablesOfWorkSpace from "../TablesOfWorkSpace/TablesOfWorkSpace";
-
+import TableCreatingPopup from '../../../components/Shared/TableCreatingPopup/TableCreatingPopup';
 const Home = (props) => {
   useEffect(() => {
     document.title = props.title;
@@ -19,6 +19,9 @@ const Home = (props) => {
         <div>
           <TablesOfWorkSpace />
         </div>
+        {/* <div>
+          <TableCreatingPopup />
+        </div> */}
       </div>
     </div>
   );
