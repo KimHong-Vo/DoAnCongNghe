@@ -73,14 +73,19 @@ const TableCreatingPopup = (props) => {
               <label for="background-picker">Phông nền</label>{" "}
             </div>
             <div id="background-picker">
+              
               <ul className={Styles.background}>
-                {[...Array(4)].map((x, i) => (
+                {/* {backgroundImage.map((x, i) => (
                   <li className={Styles.backgroundImg} key={i}>
-                    <button
-                      className={Styles.buttonChooseBackgroundImg}
-                    ></button>
+                    <img src={x} alt="imgBackground" />
                   </li>
-                ))}
+                ))} 
+                  Map ra thẻ img vậy nè, rồi ông set sự kiện onClick cho thẻ <li></li>.
+                  Ông tạo thêm cái useState là 1 cái string background ảnh, rồi mỗi lần click vô thẻ li là set background
+                    của useState lại là x.
+                */
+                  
+                }
               </ul>
               <ul className={Styles.background}>
                 {[...Array(5)].map((x, i) => (
