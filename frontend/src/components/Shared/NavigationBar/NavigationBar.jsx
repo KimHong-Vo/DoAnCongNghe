@@ -6,8 +6,9 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import AvatarText from "./AvatarText";
-import { Modal } from "@mui/material";
 import TableCreatingPopup from "../TableCreatingPopup/TableCreatingPopup";
+import Popover from "@mui/material/Popover";
+import WorlSpaceCreatingPopup from "../WorlSpaceCreatingPopup/WorlSpaceCreatingPopup";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -51,7 +52,29 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const NavigationBar = () => {
-  const [openCreatingTable, setOpenCreatingTable] = React.useState("none");
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorElTable, setAnchorELTable] = React.useState(null);
+
+  const handleCreatingNew = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCreatingTable = (event) => {
+    setAnchorELTable(event.currentTarget);
+  };
+
+  const handleCloseNew = () => {
+    setAnchorEl(null);
+  };
+
+  const handleCloseCreatingTable = () => {
+    setAnchorELTable(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const openCreatingTable = Boolean(anchorElTable);
+
+  const [isOpenCreatingWorkSpace, setIsOpenCreatingWorkSpace] =
+    React.useState(false);
 
   return (
     <div className={styles.mainContainer}>
@@ -64,8 +87,8 @@ const NavigationBar = () => {
       </span>
 
       <div className={styles.btnAppBar}>
-        <Button variant="outlined" endIcon={<icons.downIcon />}>
-          Các Không Gian Làm Việc
+        <Button className="" variant="outlined" endIcon={<icons.downIcon />}>
+          Các không gian làm việc
         </Button>
       </div>
 
@@ -84,8 +107,11 @@ const NavigationBar = () => {
           Mẫu
         </Button>
       </div>
-      <button onClick={() => setOpenCreatingTable("block")} className="text-white ml-10 px-4 py-2 bg-[#2b607f] drop-shadow-lg rounded-md hover:bg-gray-500">
-        TẠO MỚI
+      <button
+        onClick={handleCreatingNew}
+        className="text-white ml-10 px-4 py-2 bg-[#2b607f] rounded-sm hover:cursor-pointer hover:bg-gray-500"
+      >
+        Tạo mới
       </button>
 
       <div className={styles.search}>
@@ -111,10 +137,53 @@ const NavigationBar = () => {
       <div className={styles.avatar}>
         <AvatarText nameText="Dang Kiet" />
       </div>
-     
-     <div style={{display: `${openCreatingTable}`}}>
-        <TableCreatingPopup />
-     </div>
+
+      <div>
+        <Popover
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleCloseNew}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+        >
+          <div className="bg-white w-[200px] pb-3">
+            <div
+              onClick={handleCreatingTable}
+              className="bg-gray-200 w-[90%] hover:bg-slate-300 hover:cursor-pointer m-auto h-10 rounded-sm mt-2 flex items-center justify-center"
+            >
+              <span className="font-semibold">Tạo bảng</span>
+            </div>
+            <div
+              onClick={() =>{
+                setIsOpenCreatingWorkSpace(!isOpenCreatingWorkSpace)
+                setAnchorEl(null);
+              }
+              }
+              className="bg-gray-200 w-[90%] hover:bg-slate-300 hover:cursor-pointer m-auto h-10 rounded-sm mt-2 flex items-center justify-center"
+            >
+              <span className="font-semibold">Tạo Không gian làm việc</span>
+            </div>
+          </div>
+        </Popover>
+      </div>
+
+      <div>
+        <Popover
+          open={openCreatingTable}
+          anchorEl={anchorElTable}
+          onClose={handleCloseCreatingTable}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+        >
+          <TableCreatingPopup />
+        </Popover>
+      </div>
+
+      {isOpenCreatingWorkSpace ? <WorlSpaceCreatingPopup /> : <></>}
     </div>
   );
 };

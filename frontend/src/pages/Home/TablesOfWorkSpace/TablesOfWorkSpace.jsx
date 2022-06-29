@@ -1,4 +1,3 @@
-
 import React, { Fragment, useState, useEffect } from "react";
 //import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -14,28 +13,25 @@ import axios from "axios";
 import TablesOfWorkSpaceItem from "./TablesOfWorkSpaceItem";
 
 function TablesOfWorkSpace() {
-  const [listTableState, setListTableState] = useState([])
+  const [listTableState, setListTableState] = useState([]);
   useEffect(() => {
     const getTable = async () => {
       try {
         const res = await axios.get(
           "https://jsonplaceholder.typicode.com/posts?_limit=10"
-        )
+        );
         //console.log(res.data)
-        setListTableState(res.data)
+        setListTableState(res.data);
       } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
       }
-    }
-    getTable()
-  }, [])
+    };
+    getTable();
+  }, []);
 
   return (
-
     <Fragment>
-
       <Box sx={{ flexGrow: 1 }}>
-
         <div className="title1">
           <div className="content1">
             <div className="iconFont">
@@ -49,20 +45,39 @@ function TablesOfWorkSpace() {
             <ul className="boardpagesSeaction"></ul>
           </div>
         </div>
-        <div className="button-container" style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-start', alignContent: 'center', width: '70%' }}>
-          <div style={{ display: 'inline-flex', flexGrow: 1, flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'flex-start', width: '100%' }}>
-            {listTableState.map(table => {
+        <div
+          className="button-container"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "flex-start",
+            alignContent: "center",
+            width: "70%",
+          }}
+        >
+          <div
+            style={{
+              display: "inline-flex",
+              flexGrow: 1,
+              flexWrap: "wrap",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              width: "100%",
+            }}
+          >
+            {listTableState.map((table) => {
               return (
                 <div className="button-board">
                   {/* <span className="board-title-fade"></span> */}
-                  <a className="board-title background-tableworkspace" href="action">
-                    <TablesOfWorkSpaceItem
-                      key={table.id}
-                      tableProps={table}
-                    />
+                  <a
+                    className="board-title background-tableworkspace"
+                    href="action"
+                  >
+                    <TablesOfWorkSpaceItem key={table.id} tableProps={table} />
                   </a>
                 </div>
-              )
+              );
             })}
             <Button className="button-board">
               <a className="board-title background-table" href="action">
@@ -85,21 +100,39 @@ function TablesOfWorkSpace() {
             <ul className="boardpagesSeaction"></ul>
           </div>
         </div>
-        <div className="button-container" style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-start', alignContent: 'center', width: '70%' }}>
-          <div style={{ display: 'inline-flex', flexGrow: 1, flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'flex-start', width: '100%' }}>
-            {listTableState.map(table => {
+        <div
+          className="button-container"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "flex-start",
+            alignContent: "center",
+            width: "70%",
+          }}
+        >
+          <div
+            style={{
+              display: "inline-flex",
+              flexGrow: 1,
+              flexWrap: "wrap",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              width: "100%",
+            }}
+          >
+            {listTableState.map((table) => {
               return (
                 <div className="button-board">
                   {/* <span className="board-title-fade"></span> */}
-                  <a className="board-title background-tableworkspace" href="action">
-                    <TablesOfWorkSpaceItem
-                      key={table.id}
-                      tableProps={table}
-                    />
+                  <a
+                    className="board-title background-tableworkspace"
+                    href="action"
+                  >
+                    <TablesOfWorkSpaceItem key={table.id} tableProps={table} />
                   </a>
                 </div>
-
-              )
+              );
             })}
             <Button className="button-board">
               <a className="board-title background-table" href="action">
@@ -109,7 +142,6 @@ function TablesOfWorkSpace() {
           </div>
         </div>
       </Box>
-
     </Fragment>
   );
 }
