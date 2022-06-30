@@ -26,16 +26,17 @@ public class ListTagsController {
 
 	@PostMapping("/saveList/{tbId}")
 	public ResponseEntity<ListInTable> savelistInTable(@RequestBody ListInTable listInTable, @PathVariable("tbId") String tbId) {
-		System.out.println(listInTable.toString());
+		
 		Table table = tableService.getTableById(tbId);
-
 		if (table == null) {
 			System.out.println("TB not found");
 			return new ResponseEntity<ListInTable>(HttpStatus.NOT_FOUND);
 		} else {
 			System.out.println(table.toString());
 			listInTable.setTable(table);
+			System.out.println(Calendar.getInstance().getTime());
 			listInTable.setCreateDate(Calendar.getInstance().getTime());
+			
 			ListInTable list = listTBService.saveListInTable(listInTable);
 			return new ResponseEntity<ListInTable>(list, HttpStatus.OK);
 		}
