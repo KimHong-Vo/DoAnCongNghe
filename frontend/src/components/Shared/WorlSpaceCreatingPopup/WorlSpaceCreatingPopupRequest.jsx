@@ -8,7 +8,7 @@ const handleSubmitBtn = async() => {
     // make axios post request
     const response = await axios({
       method: "post",
-      url: "/api/createWorkSpace",
+      url: "https://localhost:8080/insertWorkspace",
       data: createWSData,
       headers: { "Content-Type": "multipart/form-data" },
     });

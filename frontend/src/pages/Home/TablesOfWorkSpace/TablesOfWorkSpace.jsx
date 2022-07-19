@@ -18,7 +18,7 @@ function TablesOfWorkSpace() {
     const getTable = async () => {
       try {
         const res = await axios.get(
-          "https://jsonplaceholder.typicode.com/posts?_limit=10"
+          "https://localhost:8080/table"
         );
         //console.log(res.data)
         setListTableState(res.data);
