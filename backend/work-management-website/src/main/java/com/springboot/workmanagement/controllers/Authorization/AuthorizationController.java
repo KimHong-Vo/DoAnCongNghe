@@ -1,6 +1,7 @@
 package com.springboot.workmanagement.controllers.Authorization;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +12,7 @@ import com.springboot.workmanagement.repositories.Authorization.UserRepository;
 import com.springboot.workmanagement.entities.workSpace.User;
 
 
-
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/account")
 public class AuthorizationController {
@@ -37,14 +38,19 @@ public class AuthorizationController {
 
 	// xu ly dang nhap
 	// https://localhost:8080/account/login
+	@CrossOrigin
 	@PostMapping("/login")
 	public User logIn(@RequestBody User u) {
+		System.out.print("Login: ");
 		users = repository.findAll();
 		for (User user : users) {
 			if (user.equals(u)) {
+				System.out.println("success");
 				return user;
+				
 			}
 		}
+		System.out.println("fail");
 		return null;
 //		System.out.println("Hello");
 	}
