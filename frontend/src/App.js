@@ -8,11 +8,11 @@ import DetailTable from './components/Shared/DetailTable/DetailTable'
 function App() {
   return (
     <div className="App">
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<Home title="Home" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/tablesofworkspace" element={<TablesOfWorkSpace />} />
-      </Routes> */}
+      </Routes>
       <DetailTable></DetailTable>
     </div>
   )

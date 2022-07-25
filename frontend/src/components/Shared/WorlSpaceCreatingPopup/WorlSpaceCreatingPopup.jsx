@@ -7,7 +7,9 @@ import Box from "@mui/material/Box";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
 import axios from "axios";
-
+import isEmpty from "validator/lib/isEmpty";
+import { useNavigate } from "react-router-dom"
+import Alert from '@mui/material/Alert';
 const style = {
   position: "absolute",
   top: "50%",
@@ -23,13 +25,23 @@ const style = {
 
 const WorlSpaceCreatingPopup = () => {
   const [wsName, setWSName] = useState("");
+  const history= useNavigate();
   const [wsType, setWSType] = useState("");
   const [description, setDescription] = useState("");
-
+  const [validationMsg, setValidationMsg] = useState({});
   const [open, setOpen] = React.useState(true);
   const handleClose = () => setOpen(false);
-  
+  const validateAll = () => {
+    const msg={}
+    if (isEmpty(wsName)) {
+      msg.wsName ="Please input a name"}
+      setValidationMsg(msg)
+      if (Object.keys(msg).length > 0) return false
+      return true
+    }
   const handleSubmitBtn = async (e) => {
+    const isValid = validateAll()
+     
     e.preventDefault();
     console.log(">>>check data state: ", wsName, wsType, description);
     try {
@@ -47,6 +59,8 @@ const WorlSpaceCreatingPopup = () => {
     } catch(error) {
       console.log(error)
     }
+    if (!isValid) return
+    history('/tablesofworkspace')
   };
   return (
     <Modal open={open} onClose={handleClose}>
@@ -77,6 +91,8 @@ const WorlSpaceCreatingPopup = () => {
                       onChange={(e) => setWSName(e.target.value)}
                       placeholder="Big Brain bussiness"
                     />
+                    <Alert severity="error">{validationMsg.wsName}</Alert>
+                    
                     <p className="fiedExplain">
                       This is your bussiness name, group or organization
                     </p>
