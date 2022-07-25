@@ -1,13 +1,8 @@
 package com.springboot.workmanagement.entities.workSpace;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class WorkSpace{
@@ -18,8 +13,6 @@ public class WorkSpace{
 	private String description;
 	private String logoPath;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "workspace")
-	private Set<Table> tables = new HashSet<>();
 	
 	
 	public WorkSpace() {}
@@ -68,11 +61,4 @@ public class WorkSpace{
 		// TODO Auto-generated method stub
 		return "id: " + this.id + "- name: " + this.name + "- description: " + this.description;
 	}
-	public Set<Table> getTables() {
-		return tables;
-	}
-	public void setTables(Set<Table> tables) {
-		this.tables = tables;
-	}
-	
 }
