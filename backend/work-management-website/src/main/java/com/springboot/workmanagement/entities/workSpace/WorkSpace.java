@@ -1,8 +1,15 @@
 package com.springboot.workmanagement.entities.workSpace;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class WorkSpace{
@@ -12,18 +19,20 @@ public class WorkSpace{
 	private String name;
 	private String description;
 	private String logoPath;
-	
-	
-	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "workspace")
+	private Set<Table> tables = new HashSet<>();
 	public WorkSpace() {}
 	public WorkSpace(String name, String description) {
 		this.name = name;
 		this.description = description;	
-
 	}
 	
-	
-
+	public Set<Table> getTables() {
+		return tables;
+	}
+	public void setTables(Set<Table> tables) {
+		this.tables = tables;
+	}
 	public Integer getId() {
 		return id;
 	}
