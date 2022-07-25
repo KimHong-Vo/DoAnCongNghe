@@ -6,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
+import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -28,9 +29,24 @@ const WorlSpaceCreatingPopup = () => {
   const [open, setOpen] = React.useState(true);
   const handleClose = () => setOpen(false);
   
-  const handleSubmitBtn = (e) => {
+  const handleSubmitBtn = async (e) => {
     e.preventDefault();
     console.log(">>>check data state: ", wsName, wsType, description);
+    try {
+      // make axios post request
+      const response = await axios({
+        method: "post",
+        url: "http://localhost:8080/insertWorkspace",
+        data: {
+          // data instead params when method isn't get
+          name: wsName,
+          type: wsType,
+          description: description
+        }
+      });
+    } catch(error) {
+      console.log(error)
+    }
   };
   return (
     <Modal open={open} onClose={handleClose}>
