@@ -17,9 +17,7 @@ function TablesOfWorkSpace() {
   useEffect(() => {
     const getTable = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:8080/talbe"
-        );
+        const res = await axios.get("http://localhost:8080/talbe");
         //console.log(res.data)
         setListTableState(res.data);
       } catch (error) {

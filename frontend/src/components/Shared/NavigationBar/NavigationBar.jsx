@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from "./NavigationBar.module.scss";
 import { icons } from "../../../utils";
 import Button from "@mui/material/Button";
@@ -9,6 +9,8 @@ import AvatarText from "./AvatarText";
 import TableCreatingPopup from "../TableCreatingPopup/TableCreatingPopup";
 import Popover from "@mui/material/Popover";
 import WorlSpaceCreatingPopup from "../WorlSpaceCreatingPopup/WorlSpaceCreatingPopup";
+import DropDown from "../DropDown/DropDown";
+import WorkSpaceService from "../../../service/WorkSpaceService";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -55,6 +57,20 @@ const NavigationBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorElTable, setAnchorELTable] = React.useState(null);
 
+  const [options, setOptions] = React.useState([]);
+
+  const workSpaceService = new WorkSpaceService();
+
+  function getApi() {
+    return workSpaceService.getAll();
+  }
+
+  useEffect(() => {
+    getApi().then((res) => {
+      setOptions(res.data);
+    }).catch((err) => {console.log(err)});
+  }, []);
+
   const handleCreatingNew = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -87,9 +103,7 @@ const NavigationBar = () => {
       </span>
 
       <div className={styles.btnAppBar}>
-        <Button className="" variant="outlined" endIcon={<icons.downIcon />}>
-          Các không gian làm việc
-        </Button>
+        <DropDown options={options} />
       </div>
 
       <div className={styles.btnAppBar}>
@@ -156,11 +170,10 @@ const NavigationBar = () => {
               <span className="font-semibold">Tạo bảng</span>
             </div>
             <div
-              onClick={() =>{
-                setIsOpenCreatingWorkSpace(!isOpenCreatingWorkSpace)
+              onClick={() => {
+                setIsOpenCreatingWorkSpace(!isOpenCreatingWorkSpace);
                 setAnchorEl(null);
-              }
-              }
+              }}
               className="bg-gray-200 w-[90%] hover:bg-slate-300 hover:cursor-pointer m-auto h-10 rounded-sm mt-2 flex items-center justify-center"
             >
               <span className="font-semibold">Tạo Không gian làm việc</span>
