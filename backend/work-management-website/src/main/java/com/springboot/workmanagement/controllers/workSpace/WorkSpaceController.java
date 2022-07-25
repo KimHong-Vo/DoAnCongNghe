@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ import com.springboot.workmanagement.DTO.WorkspaceDTO;
 import com.springboot.workmanagement.entities.workSpace.WorkSpace;
 import com.springboot.workmanagement.repositories.workSpace.WorkSpaceRepository;
 import com.springboot.workmanagement.repositories.workSpace.WorkspaceService;
-
+@CrossOrigin
 @RestController
 public class WorkSpaceController {
 	@Autowired
