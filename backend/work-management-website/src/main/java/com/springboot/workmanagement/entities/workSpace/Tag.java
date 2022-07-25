@@ -36,7 +36,6 @@ public class Tag implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "list_id", nullable = false)
-	@JsonIgnore
 	private ListInTable list;
 	
 	@OneToMany(mappedBy = "tag",

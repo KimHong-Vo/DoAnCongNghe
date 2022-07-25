@@ -9,5 +9,4 @@ public interface TableService {
 	public Table getTableById(String id);
 	public List<Table> getAllTable();
 
-
 }

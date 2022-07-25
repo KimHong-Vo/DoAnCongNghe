@@ -11,7 +11,6 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.springboot.workmanagement.entities.theme.Background;
 
 @Entity
@@ -29,7 +28,6 @@ public class Table {
 	//reference table
 	@ManyToOne
 	@JoinColumn(name = "workspace_ID", nullable = false)
-	@JsonIgnore
 	private WorkSpace workspace;
 	
 	@OneToOne
