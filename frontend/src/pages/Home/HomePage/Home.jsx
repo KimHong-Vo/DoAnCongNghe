@@ -1,26 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavigationBar from "../../../components/Shared/NavigationBar/NavigationBar";
 import Menu from "../../../components/Shared/Menu/Menu";
 import TablesOfWorkSpace from "../TablesOfWorkSpace/TablesOfWorkSpace";
 import WorkSpaceService from "../../../service/WorkSpaceService";
+import axios from "axios";
 const Home = (props) => {
   useEffect(() => {
     document.title = props.title;
   }, [props.title]);
 
-<<<<<<< Updated upstream
-=======
-  const workSpaceService = new WorkSpaceService();
-
-  function getApi () {
-    return workSpaceService.getAll();
-  }
-
+  const [listTableState, setListTableState] = useState([]);
   useEffect(() => {
-    getApi().then((res) => console.log("fdaf"));
+    const getTable = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:8080/talbe",
+        );
+
+        res.setHeader("contet-type", "Access-Control-Allow-Origin");
+       
+        //console.log(res.data)
+        setListTableState(res.data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getTable();
   }, []);
->>>>>>> Stashed changes
-  
   return (
     <div className="w-full h-full">
       <div className="w-full">
