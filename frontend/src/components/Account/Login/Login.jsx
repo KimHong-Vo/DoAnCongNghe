@@ -4,16 +4,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.scss";
 import axios from "axios";
 import { IconGoogle, IconFacebook, IconLogo } from "../../../utils/svg";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [nameInput, setNameInput] = useState("");
   const [passInput, setPassInput] = useState("");
-  // const handleClick = () => {
-  //   document.getElementById("id01").style.display = "block";
-  // };
-  function onSubmit() {
-    console.log("name:" + nameInput);
-    const myAxios = axios;
-    myAxios({
+  const navigate =useNavigate();
+  const onSubmit =(e)=> {
+    e.preventDefault();
+    const myAxios =  axios;
+     myAxios({
       method: "post", // defaut is get
       url: "http://localhost:8080/account/login",
       responseType: "json",
@@ -27,13 +26,16 @@ const Login = () => {
         if (res.data == null) {
           console.log("null");
         } else {
-          console.log(res.data);
-          
+          // console.log(res.data);
+          window.localStorage.setItem("token", res.data);
+          navigate("/");
         }
       })
       .catch((error) => {
         console.log(error.data);
       });
+    
+      
   }
   return (
     <div className="flex flex-col items-center justify-center w-full h-screen">

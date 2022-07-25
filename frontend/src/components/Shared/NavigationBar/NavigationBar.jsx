@@ -9,6 +9,9 @@ import AvatarText from "./AvatarText";
 import TableCreatingPopup from "../TableCreatingPopup/TableCreatingPopup";
 import Popover from "@mui/material/Popover";
 import WorlSpaceCreatingPopup from "../WorlSpaceCreatingPopup/WorlSpaceCreatingPopup";
+import { getFunctionName } from "@mui/utils/getDisplayName";
+import axios from "axios";
+import { Avatar } from "@mui/material";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -54,7 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const NavigationBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorElTable, setAnchorELTable] = React.useState(null);
-
+  const [userName, setUserName] = React.useState("");
   const handleCreatingNew = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -76,6 +79,29 @@ const NavigationBar = () => {
   const [isOpenCreatingWorkSpace, setIsOpenCreatingWorkSpace] =
     React.useState(false);
 
+    async function getFunctionName(){
+      let token = await window.localStorage.getItem("token");
+      // console.log("get token nav bar: " + token);
+      if(token==null){
+       return "";
+      }
+      else{
+        let result="";
+      const uName =await axios.get("http://localhost:8080/account/getUser", {
+        responseType: "json",
+        headers:{Authorization: token}}).then((value)=>{
+          result = value.data.fullName;
+          // console.log("get uname nav bar: " +result);
+      }
+      
+      );
+      setUserName(result);
+       return result;
+      }
+   
+     };
+
+     getFunctionName();
   return (
     <div className={styles.mainContainer}>
       <span className={styles.appSwitcher}>
@@ -135,7 +161,11 @@ const NavigationBar = () => {
       </div>
 
       <div className={styles.avatar}>
-        <AvatarText nameText="Dang Kiet" />
+        {userName!=="" && (<AvatarText nameText={userName.includes(" ") ? userName: userName.concat(" ").concat(userName)} />)}
+        {userName==="" && (
+          <a className="avatar" href="/login">Login</a>
+          )
+          }
       </div>
 
       <div>
