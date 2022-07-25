@@ -29,7 +29,7 @@ public class TagController {
 	ListInTableService listInTableSer;
 	
 	//tao the
-	@PostMapping("/createListInTable/{listInTableID}")
+	@PostMapping("/createTagForListInTable/{listInTableID}")
 	public ResponseEntity<TagDTO> addTagForListInTable(@RequestHeader("Authorization") String token,
 			@RequestBody Tag tag, @PathVariable Integer listInTableID) {
 		//check user logined?
@@ -54,7 +54,9 @@ public class TagController {
 				System.out.println(result.getId()+"idTag");
 				tagDto.setId(result.getId());
 				tagDto.setTitle(result.getTitle());
+				tagDto.setPosition(result.getPosition());
 				tagDto.setCreateDate(result.getCreateDate());
+				tagDto.setOwner(result.getOwner());
 				return ResponseEntity.ok(tagDto);
 			}
 		}
