@@ -1,4 +1,4 @@
-package com.springboot.workmanagement.entities.workspace;
+package com.springboot.workmanagement.entities.workSpace;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -9,11 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.OneToMany;
-
-import javax.persistence.ManyToOne;
-
 
 @Entity
 public class WorkSpace{
@@ -23,18 +19,11 @@ public class WorkSpace{
 	private String name;
 	private String description;
 	private String logoPath;
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "workspace")
 	private Set<Table> tables = new HashSet<>();
-
-	@ManyToOne
-	private WorkSpaceType workSpaceType;
-
-
 	public WorkSpace() {}
-	public WorkSpace(String name, String description, WorkSpaceType workSpaceType) {
+	public WorkSpace(String name, String description) {
 		this.name = name;
-
 		this.description = description;	
 	}
 	
@@ -44,10 +33,6 @@ public class WorkSpace{
 	public void setTables(Set<Table> tables) {
 		this.tables = tables;
 	}
-
-		this.description = description;
-	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -80,15 +65,9 @@ public class WorkSpace{
 		this.logoPath = logoPath;
 	}
 
-	public WorkSpaceType getWorkSpaceType() {
-		return workSpaceType;
-	}
-	public void setWorkSpaceType(WorkSpaceType workSpaceType) {
-		this.workSpaceType = workSpaceType;
-	}
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "id: " + this.id + "- name: " + this.name + "- description: " + this.description ;
+		return "id: " + this.id + "- name: " + this.name + "- description: " + this.description;
 	}
 }
