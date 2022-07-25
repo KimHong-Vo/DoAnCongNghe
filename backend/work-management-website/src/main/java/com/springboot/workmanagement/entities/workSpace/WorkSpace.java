@@ -1,8 +1,13 @@
 package com.springboot.workmanagement.entities.workSpace;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class WorkSpace{
@@ -13,7 +18,8 @@ public class WorkSpace{
 	private String description;
 	private String logoPath;
 	
-	
+	@OneToMany(cascade = CascadeType.ALL)
+	private Set<Table> tables = new HashSet<>();
 	
 	public WorkSpace() {}
 	public WorkSpace(String name, String description) {
@@ -55,7 +61,15 @@ public class WorkSpace{
 	public void setLogoPath(String logoPath) {
 		this.logoPath = logoPath;
 	}
+	
+	
 
+	public Set<Table> getTables() {
+		return tables;
+	}
+	public void setTables(Set<Table> tables) {
+		this.tables = tables;
+	}
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

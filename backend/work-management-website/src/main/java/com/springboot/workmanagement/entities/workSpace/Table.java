@@ -1,16 +1,21 @@
 package com.springboot.workmanagement.entities.workSpace;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.springboot.workmanagement.entities.theme.Background;
 
 @Entity
@@ -24,11 +29,13 @@ public class Table {
 	private Date createDate;
 	private boolean isPublic;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	private Set<ListInTable> listsInTable = new HashSet<>();
 	
-	//reference table
-	@ManyToOne
-	@JoinColumn(name = "workspace_ID", nullable = false)
-	private WorkSpace workspace;
+//	//reference table
+//	@ManyToOne
+//	@JoinColumn(name = "workspace_ID", nullable = false)
+//	@JsonIgnore
 	
 	@OneToOne
 	@JoinColumn(name = "background_id")
@@ -59,14 +66,14 @@ public class Table {
 		this.title = title;
 	}
 
-	public WorkSpace getWorkspace() {
-		return workspace;
-	}
-
-	public void setWorkspace(WorkSpace workspace) {
-		this.workspace = workspace;
-	}
-	
+//	public WorkSpace getWorkspace() {
+//		return workspace;
+//	}
+//
+//	public void setWorkspace(WorkSpace workspace) {
+//		this.workspace = workspace;
+//	}
+//	
 	
 	
 	public Date getCreateDate() {
@@ -99,6 +106,15 @@ public class Table {
 
 	public void setOwner(User owner) {
 		this.owner = owner;
+	}
+	
+
+	public Set<ListInTable> getListsInTable() {
+		return listsInTable;
+	}
+
+	public void setListsInTable(Set<ListInTable> listsInTable) {
+		this.listsInTable = listsInTable;
 	}
 
 	@Override

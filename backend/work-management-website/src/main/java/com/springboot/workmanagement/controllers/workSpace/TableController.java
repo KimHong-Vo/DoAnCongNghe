@@ -48,7 +48,7 @@ public class TableController {
 		}
 		else {
 			System.out.println(ws.toString());
-			table.setWorkspace(ws);
+//			table.setWorkspace(ws);
 			table.setCreateDate(Calendar.getInstance().getTime());
 //			table.setOwner(u);
 			Table t = tableService.saveTable(table);
