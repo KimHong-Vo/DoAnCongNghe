@@ -17,17 +17,25 @@ public class ListInTable {
 	private Date createDate;
 	private String name;
 	private int position;
-	
-	//reference table
+
+	// reference table
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	private User owner;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "table_id", nullable = false)
 	private Table table;
 
-	public ListInTable() {}
+	public ListInTable() {
+	}
+
+	public ListInTable(Date createDate, String name, int position, User owner, Table table) {
+		this.createDate = createDate;
+		this.position = position;
+		this.owner = owner;
+		this.table = table;
+	}
 
 	public Integer getId() {
 		return id;
@@ -76,5 +84,5 @@ public class ListInTable {
 	public void setTable(Table table) {
 		this.table = table;
 	}
-	
+
 }
