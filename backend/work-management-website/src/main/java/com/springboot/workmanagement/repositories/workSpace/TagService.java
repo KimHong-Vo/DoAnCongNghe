@@ -4,6 +4,7 @@ import com.springboot.workmanagement.entities.workSpace.Tag;
 
 public interface TagService {
 	Tag findById(Long id);
+	Tag saveTag(Tag tag);
 	
 
 }

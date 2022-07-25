@@ -21,9 +21,6 @@ import com.springboot.workmanagement.repositories.workSpace.TableService;
 
 @RestController
 public class ListInTableController {
-
-	@Autowired
-	ListInTableService listService;
 	@Autowired
 	AuthorizationService authService;
 	@Autowired
@@ -34,6 +31,8 @@ public class ListInTableController {
 	@PostMapping("/createListInTable/{tableID}")
 	public ResponseEntity<ListDTO> addListInTableForTable(@RequestHeader("Authorization") String token,
 			@RequestBody ListInTable listInTable, @PathVariable String tableID) {
+		//check user logined
+		if(!authService.checkToken(token)) return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
 		// get user
 		User u = authService.getUserByToken(token);
 		if (u == null) {

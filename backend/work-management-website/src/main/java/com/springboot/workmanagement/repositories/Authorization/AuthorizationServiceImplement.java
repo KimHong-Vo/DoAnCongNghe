@@ -33,4 +33,13 @@ public class AuthorizationServiceImplement implements AuthorizationService{
 		return jwt.get().getUser();
 	}
 
+	@Override
+	public boolean checkToken(String token) {
+		Optional<UserJWT> jwt = userJWTRepo.findById(token);
+		if(jwt.isEmpty())
+		return false;
+		else
+			return true;
+	}
+
 }

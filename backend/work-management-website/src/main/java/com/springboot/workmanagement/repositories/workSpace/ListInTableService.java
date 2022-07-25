@@ -8,5 +8,7 @@ import com.springboot.workmanagement.entities.workSpace.Tag;
 public interface ListInTableService {
 	ListInTable save(ListInTable list);
 	Set<Tag> getListTag(Integer listInTableID);
+	ListInTable findListInTbByID(Integer id);
+	
 	
 }

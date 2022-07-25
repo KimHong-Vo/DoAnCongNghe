@@ -21,6 +21,10 @@ public class ListInTableImplement implements ListInTableService{
 	public Set<Tag> getListTag(Integer listInTableID) {
 		return listRepo.findById(listInTableID).get().getTables();
 	}
+	@Override
+	public ListInTable findListInTbByID(Integer id) {
+		return listRepo.findById(id).get();
+	}
 	
 
 }
