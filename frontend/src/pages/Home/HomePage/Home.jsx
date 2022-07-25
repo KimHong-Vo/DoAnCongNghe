@@ -6,10 +6,12 @@ const Home = (props) => {
   useEffect(() => {
     document.title = props.title;
   }, [props.title]);
+
+  
   return (
     <div className="w-full h-full">
       <div className="w-full">
-        <NavigationBar />
+        {/* <NavigationBar /> */}
       </div>
       <div className="flex flex-row w-full mt-2">
         <div className="w-1/5">
