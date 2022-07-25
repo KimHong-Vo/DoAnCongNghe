@@ -15,6 +15,8 @@ import WorkSpaceService from "../../../service/WorkSpaceService";
 import { UserAuth } from "../../../Context/AuthContext";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { async } from "@firebase/util";
+import { useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -62,10 +64,13 @@ const NavigationBar = () => {
   const [anchorElTable, setAnchorELTable] = React.useState(null);
 
   const { user, logOut } = UserAuth();
+  const navigate = useNavigate();
 
-  const handleSignOut = async () => {
+  const handleSignOut = async (e) => {
+    e.preventDefault();
     try {
       await logOut();
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }
@@ -112,29 +117,41 @@ const NavigationBar = () => {
   const [isOpenCreatingWorkSpace, setIsOpenCreatingWorkSpace] =
     React.useState(false);
 
-    async function getFunctionName(){
+    const handleLogOutBasic = async (e) => {
+      e.preventDefault();
       let token = await window.localStorage.getItem("token");
-      // console.log("get token nav bar: " + token);
-      if(token==null){
-       return "";
-      }
-      else{
-        let result="";
-      const uName =await axios.get("http://localhost:8080/account/getUser", {
+      
+      axios.get("http://localhost:8080/account/logout", {
         responseType: "json",
-        headers:{Authorization: token}}).then((value)=>{
+          headers: { Authorization: token },
+      });
+      window.localStorage.removeItem("token");
+      setUserName("");
+      navigate("/login");
+    }
+
+  async function getFunctionName() {
+    let token = await window.localStorage.getItem("token");
+    // console.log("get token nav bar: " + token);
+    if (token == null) {
+      return "";
+    } else {
+      let result = "";
+      const uName = await axios
+        .get("http://localhost:8080/account/getUser", {
+          responseType: "json",
+          headers: { Authorization: token },
+        })
+        .then((value) => {
           result = value.data.fullName;
           // console.log("get uname nav bar: " +result);
-      }
-      
-      );
+        });
       setUserName(result);
-       return result;
-      }
-   
-     };
+      return result;
+    }
+  }
 
-     getFunctionName();
+  getFunctionName();
   return (
     <div className={styles.mainContainer}>
       <span className={styles.appSwitcher}>
@@ -188,10 +205,15 @@ const NavigationBar = () => {
           {user?.displayName ? (
             <div className="flex items-center">
               <AvatarText nameText={user.displayName} />
-              <button onClick={handleSignOut} className="hover:bg-white flex hover:text-black items-center justify-center ml-5 px-5 py-2 border border-solid font-semibold rounded-lg mr-10">
+              <button
+                onClick={handleSignOut}
+                className="hover:bg-white flex hover:text-black items-center justify-center ml-5 px-5 py-2 border border-solid font-semibold rounded-lg mr-10"
+              >
                 <span className="pt-1">Logout</span>
               </button>
             </div>
+          ) : userName !== "" ? (
+            <></>
           ) : (
             <button className="px-5 py-2 bg-gray-200 rounded-sm">
               <Link
@@ -203,61 +225,75 @@ const NavigationBar = () => {
             </button>
           )}
         </div>
-      
 
-     
-
-      <div className={styles.avatar}>
-        {userName!=="" && (<AvatarText nameText={userName.includes(" ") ? userName: userName.concat(" ").concat(userName)} />)}
-       
-      </div>
-
-      <div>
-        <Popover
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handleCloseNew}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
-          }}
-        >
-          <div className="bg-white w-[200px] pb-3">
-            <div
-              onClick={handleCreatingTable}
-              className="bg-gray-200 w-[90%] hover:bg-slate-300 hover:cursor-pointer m-auto h-10 rounded-sm mt-2 flex items-center justify-center"
-            >
-              <span className="font-semibold">Tạo bảng</span>
+        <div className={styles.avatar}>
+          {userName !== "" ? (
+            <div className="flex items-center">
+              <AvatarText
+                nameText={
+                  userName.includes(" ")
+                    ? userName
+                    : userName.concat(" ").concat(userName)
+                }
+              />
+              <button
+                onClick={handleLogOutBasic}
+                className="hover:bg-white flex hover:text-black items-center justify-center ml-5 px-5 py-2 border border-solid font-semibold rounded-lg mr-10"
+              >
+                <span className="pt-1">Logout</span>
+              </button>
             </div>
-            <div
-              onClick={() => {
-                setIsOpenCreatingWorkSpace(!isOpenCreatingWorkSpace);
-                setAnchorEl(null);
-              }}
-              className="bg-gray-200 w-[90%] hover:bg-slate-300 hover:cursor-pointer m-auto h-10 rounded-sm mt-2 flex items-center justify-center"
-            >
-              <span className="font-semibold">Tạo Không gian làm việc</span>
+          ) : (
+            <></>
+          )}
+        </div>
+
+        <div>
+          <Popover
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleCloseNew}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+          >
+            <div className="bg-white w-[200px] pb-3">
+              <div
+                onClick={handleCreatingTable}
+                className="bg-gray-200 w-[90%] hover:bg-slate-300 hover:cursor-pointer m-auto h-10 rounded-sm mt-2 flex items-center justify-center"
+              >
+                <span className="font-semibold">Tạo bảng</span>
+              </div>
+              <div
+                onClick={() => {
+                  setIsOpenCreatingWorkSpace(!isOpenCreatingWorkSpace);
+                  setAnchorEl(null);
+                }}
+                className="bg-gray-200 w-[90%] hover:bg-slate-300 hover:cursor-pointer m-auto h-10 rounded-sm mt-2 flex items-center justify-center"
+              >
+                <span className="font-semibold">Tạo Không gian làm việc</span>
+              </div>
             </div>
-          </div>
-        </Popover>
-      </div>
+          </Popover>
+        </div>
 
-      <div>
-        <Popover
-          open={openCreatingTable}
-          anchorEl={anchorElTable}
-          onClose={handleCloseCreatingTable}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
-          }}
-        >
-          <TableCreatingPopup />
-        </Popover>
-      </div>
+        <div>
+          <Popover
+            open={openCreatingTable}
+            anchorEl={anchorElTable}
+            onClose={handleCloseCreatingTable}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+          >
+            <TableCreatingPopup />
+          </Popover>
+        </div>
 
-      {isOpenCreatingWorkSpace ? <WorlSpaceCreatingPopup /> : <></>}
-    </div>
+        {isOpenCreatingWorkSpace ? <WorlSpaceCreatingPopup /> : <></>}
+      </div>
     </div>
   );
 };

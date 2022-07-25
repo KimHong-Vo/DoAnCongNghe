@@ -27,12 +27,12 @@ const Login = () => {
 
   useEffect(() => {
     if (user != null) {
-      console.log("Link to home");
       navigate("/");
     }
   }, [user]);
 
-  function onSubmit() {
+  const onSubmit = (e) =>  {
+    e.preventDefault();
     const myAxios = axios;
     myAxios({
       method: "post", // defaut is get
