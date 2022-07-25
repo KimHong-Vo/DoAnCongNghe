@@ -7,26 +7,29 @@ import { IconGoogle, IconFacebook, IconLogo } from "../../../utils/svg";
 const Login = () => {
   const [nameInput, setNameInput] = useState("");
   const [passInput, setPassInput] = useState("");
-
   // const handleClick = () => {
   //   document.getElementById("id01").style.display = "block";
   // };
   function onSubmit() {
+    console.log("name:" + nameInput);
     const myAxios = axios;
     myAxios({
       method: "post", // defaut is get
-      url: "http://192.168.1.78:8080/login",
+      url: "http://localhost:8080/account/login",
       responseType: "json",
       data: {
         // data instead params when method isn't get
-        name: nameInput,
+        email: nameInput,
         password: passInput,
       },
     })
       .then((res) => {
         if (res.data == null) {
           console.log("null");
-        } else console.log(res.data);
+        } else {
+          console.log(res.data);
+          
+        }
       })
       .catch((error) => {
         console.log(error.data);
