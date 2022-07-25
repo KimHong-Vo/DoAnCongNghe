@@ -70,8 +70,7 @@ public class WorkSpace{
 		return "id: " + this.id + "- name: " + this.name + "- description: " + this.description;
 	}
 	public Set<Table> getTables() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.tables;
 	}
 	public void setTables(Set<Table> tables) {
 		this.tables = tables;
