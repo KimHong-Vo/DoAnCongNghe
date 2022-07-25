@@ -10,6 +10,8 @@ import axios from "axios";
 import isEmpty from "validator/lib/isEmpty";
 import { useNavigate } from "react-router-dom"
 import Alert from '@mui/material/Alert';
+
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -34,7 +36,7 @@ const WorlSpaceCreatingPopup = () => {
   const validateAll = () => {
     const msg={}
     if (isEmpty(wsName)) {
-      msg.wsName ="Please input a name"}
+      msg.wsName =<Alert severity="error">"Please input a name"</Alert>}
       setValidationMsg(msg)
       if (Object.keys(msg).length > 0) return false
       return true
@@ -43,6 +45,7 @@ const WorlSpaceCreatingPopup = () => {
     const isValid = validateAll()
      
     e.preventDefault();
+    if (!isValid) return
     console.log(">>>check data state: ", wsName, wsType, description);
     try {
       // make axios post request
@@ -59,7 +62,7 @@ const WorlSpaceCreatingPopup = () => {
     } catch(error) {
       console.log(error)
     }
-    if (!isValid) return
+    
     history('/tablesofworkspace')
   };
   return (
@@ -91,7 +94,7 @@ const WorlSpaceCreatingPopup = () => {
                       onChange={(e) => setWSName(e.target.value)}
                       placeholder="Big Brain bussiness"
                     />
-                    <Alert severity="error">{validationMsg.wsName}</Alert>
+                    <p>{validationMsg.wsName}</p>
                     
                     <p className="fiedExplain">
                       This is your bussiness name, group or organization
@@ -133,6 +136,7 @@ const WorlSpaceCreatingPopup = () => {
                 </form>
               </div>
             </div>
+            
           </Grid>
           <Grid
             item
