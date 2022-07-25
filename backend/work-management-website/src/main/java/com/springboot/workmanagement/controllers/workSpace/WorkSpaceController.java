@@ -7,10 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.springboot.workmanagement.DTO.TableDTO;
 import com.springboot.workmanagement.DTO.WorkspaceDTO;
+import com.springboot.workmanagement.entities.workSpace.Table;
 import com.springboot.workmanagement.entities.workSpace.WorkSpace;
 import com.springboot.workmanagement.repositories.workSpace.WorkSpaceRepository;
 import com.springboot.workmanagement.repositories.workSpace.WorkspaceService;
@@ -68,4 +76,17 @@ public class WorkSpaceController {
 		return ResponseEntity.ok(result);
 		
 	}
+	
+	//idworkspace-> ds bang
+			@GetMapping("/getListBoardForWorkspace/{workspaceId}")
+			public ResponseEntity<List<TableDTO>> getListBoardForWorkspace(@PathVariable Integer workspaceId){
+				List<TableDTO> result = new ArrayList<>();
+				System.out.println(wpService.getListTableForWorkspace(workspaceId)+"list table");
+				for(Table tb: wpService.getListTableForWorkspace(workspaceId)) {
+					TableDTO tbDTO = new TableDTO(tb.getId(),tb.getTitle(), tb.getCreateDate(), tb.isPublic(), tb.getBackground(), tb.getOwner());
+				    result.add(tbDTO); 
+				}
+				return ResponseEntity.ok(result);
+				
+			}
 }

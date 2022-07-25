@@ -7,6 +7,11 @@ import Login from './components/Account/Login/Login';
 import DetailTable from './components/Shared/DetailTable/DetailTable'
 import { AuthContextProvider } from './Context/AuthContext';
 function App() {
+  window.addEventListener('beforeunload', (even)=>{
+    even.preventDefault();
+    window.localStorage.removeItem("token");
+
+  })
   return (
     <div className="App">
       <AuthContextProvider>

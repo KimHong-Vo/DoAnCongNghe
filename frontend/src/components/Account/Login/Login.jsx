@@ -36,22 +36,28 @@ const Login = () => {
     const myAxios = axios;
     myAxios({
       method: "post", // defaut is get
-      url: "http://192.168.1.78:8080/login",
+      url: "http://localhost:8080/account/login",
       responseType: "json",
       data: {
         // data instead params when method isn't get
-        name: nameInput,
+        email: nameInput,
         password: passInput,
       },
     })
       .then((res) => {
         if (res.data == null) {
           console.log("null");
-        } else console.log(res.data);
+        } else {
+          // console.log(res.data);
+          window.localStorage.setItem("token", res.data);
+          navigate("/");
+        }
       })
       .catch((error) => {
         console.log(error.data);
       });
+    
+      
   }
   return (
     <div className="flex flex-col items-center justify-center w-full h-screen">

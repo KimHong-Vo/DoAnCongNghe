@@ -14,6 +14,7 @@ import WorkSpaceService from "../../../service/WorkSpaceService";
 
 import { UserAuth } from "../../../Context/AuthContext";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -88,6 +89,8 @@ const NavigationBar = () => {
       });
   }, []);
 
+  const [userName, setUserName] = React.useState("");
+
   const handleCreatingNew = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -109,6 +112,29 @@ const NavigationBar = () => {
   const [isOpenCreatingWorkSpace, setIsOpenCreatingWorkSpace] =
     React.useState(false);
 
+    async function getFunctionName(){
+      let token = await window.localStorage.getItem("token");
+      // console.log("get token nav bar: " + token);
+      if(token==null){
+       return "";
+      }
+      else{
+        let result="";
+      const uName =await axios.get("http://localhost:8080/account/getUser", {
+        responseType: "json",
+        headers:{Authorization: token}}).then((value)=>{
+          result = value.data.fullName;
+          // console.log("get uname nav bar: " +result);
+      }
+      
+      );
+      setUserName(result);
+       return result;
+      }
+   
+     };
+
+     getFunctionName();
   return (
     <div className={styles.mainContainer}>
       <span className={styles.appSwitcher}>
@@ -177,6 +203,13 @@ const NavigationBar = () => {
             </button>
           )}
         </div>
+      
+
+     
+
+      <div className={styles.avatar}>
+        {userName!=="" && (<AvatarText nameText={userName.includes(" ") ? userName: userName.concat(" ").concat(userName)} />)}
+       
       </div>
 
       <div>
@@ -224,6 +257,7 @@ const NavigationBar = () => {
       </div>
 
       {isOpenCreatingWorkSpace ? <WorlSpaceCreatingPopup /> : <></>}
+    </div>
     </div>
   );
 };
