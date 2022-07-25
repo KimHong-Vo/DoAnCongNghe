@@ -15,6 +15,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.workmanagement.DTO.WorkspaceDTO;
 import com.springboot.workmanagement.entities.workSpace.WorkSpace;
+import com.springboot.workmanagement.entities.workSpace.WorkSpaceType;
 import com.springboot.workmanagement.repositories.workSpace.WorkSpaceRepository;
 import com.springboot.workmanagement.repositories.workSpace.WorkspaceService;
 
@@ -34,6 +35,7 @@ public class WorkSpaceController {
 	@PostMapping("/insertWorkspace")
 	public ResponseEntity<WorkSpace> insertWorkspace(@RequestBody WorkSpace workSpace) {
 		WorkSpace s =  workSpaceRepository.save(workSpace);
+		
 		if(s==null) {
 			return new ResponseEntity<WorkSpace>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
