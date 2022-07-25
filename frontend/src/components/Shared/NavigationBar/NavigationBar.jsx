@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import styles from "./NavigationBar.module.scss";
 import { icons } from "../../../utils";
 import Button from "@mui/material/Button";
@@ -11,6 +11,9 @@ import Popover from "@mui/material/Popover";
 import WorlSpaceCreatingPopup from "../WorlSpaceCreatingPopup/WorlSpaceCreatingPopup";
 import DropDown from "../DropDown/DropDown";
 import WorkSpaceService from "../../../service/WorkSpaceService";
+
+import { UserAuth } from "../../../Context/AuthContext";
+import { Link } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -57,6 +60,16 @@ const NavigationBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorElTable, setAnchorELTable] = React.useState(null);
 
+  const { user, logOut } = UserAuth();
+
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const [options, setOptions] = React.useState([]);
 
   const workSpaceService = new WorkSpaceService();
@@ -66,9 +79,13 @@ const NavigationBar = () => {
   }
 
   useEffect(() => {
-    getApi().then((res) => {
-      setOptions(res.data);
-    }).catch((err) => {console.log(err)});
+    getApi()
+      .then((res) => {
+        setOptions(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const handleCreatingNew = (event) => {
@@ -128,28 +145,38 @@ const NavigationBar = () => {
         Tạo mới
       </button>
 
-      <div className={styles.search}>
-        <Search>
-          <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper>
-          <StyledInputBase
-            placeholder="Tìm kiếm..."
-            inputProps={{ "aria-label": "search" }}
-          />
-        </Search>
-      </div>
+      <div className="flex items-center absolute right-2 p-2">
+        <div className="mr-10">
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Tìm kiếm..."
+              inputProps={{ "aria-label": "search" }}
+            />
+          </Search>
+        </div>
 
-      <div className={styles.infor}>
-        <icons.informationIcon />
-      </div>
-
-      <div className={styles.noti}>
-        <icons.notificationIcon />
-      </div>
-
-      <div className={styles.avatar}>
-        <AvatarText nameText="Dang Kiet" />
+        <div>
+          {user?.displayName ? (
+            <div className="flex items-center">
+              <AvatarText nameText={user.displayName} />
+              <button onClick={handleSignOut} className="hover:bg-white flex hover:text-black items-center justify-center ml-5 px-5 py-2 border border-solid font-semibold rounded-lg mr-10">
+                <span className="pt-1">Logout</span>
+              </button>
+            </div>
+          ) : (
+            <button className="px-5 py-2 bg-gray-200 rounded-sm">
+              <Link
+                className="font-semibold text-black no-underline"
+                to="/login"
+              >
+                Sign In
+              </Link>
+            </button>
+          )}
+        </div>
       </div>
 
       <div>
