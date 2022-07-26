@@ -13,8 +13,10 @@ import { MODAL_ACTION_CONFIRM } from '../Utilities/constants'
 import { saveContentAfterPressEnter, selectAllInlineText } from '../Utilities/contentEditable'
 import { Button } from 'react-bootstrap'
 import { cloneDeep } from 'lodash'
+import axios from 'axios';
 
 function Column(props) {
+  const [table, setTableId] = useState(1);
   const { column, onCardDrop, onUpdateColumn } = props
   // eslint-disable-next-line no-trailing-spaces
   
@@ -68,16 +70,26 @@ function Column(props) {
       newCardTextareaRef.current.focus()
       return
     }
-    const newCardToAdd = {
-      id: Math.random().toString(36).substring(2, 5),
-      boardId: column.boardId,
-      columnId: column.id,
-      cover: null,
-      title: newCardTitle.trim()
-    }
+    // const newCardToAdd = {
+    //   id: Math.random().toString(36).substring(2, 5),
+    //   boardId: column.boardId,
+    //   columnId: column.id,
+    //   cover: null,
+    //   title: newCardTitle.trim()
+    // }
+    let token = window.localStorage.getItem("token");
+    const apiNewCart = axios.post("http://localhost:8080/account/getUser", {
+      responseType: "json",
+      headers: { Authorization: token },
+    }).then((value) => {
+      return value;
+      // console.log("get uname nav bar: " +result);
+    });
     let newColumn = cloneDeep(column)
-    newColumn.cards.push(newCardToAdd)
-    newColumn.cardOrder.push(newCardToAdd.id)
+    // newColumn.cards.push(newCardToAdd)
+    // newColumn.cardOrder.push(newCardToAdd.id)
+    newColumn.cards.push(apiNewCart)
+    newColumn.cardOrder.push(apiNewCart.id)
     onUpdateColumn(newColumn)
     setNewCardTitle('')
     toggleOpenNewCardForm()

@@ -66,12 +66,6 @@ public class WorkSpace{
 	
 	
 
-	public Set<Table> getTables() {
-		return tables;
-	}
-	public void setTables(Set<Table> tables) {
-		this.tables = tables;
-	}
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

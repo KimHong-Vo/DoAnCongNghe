@@ -10,7 +10,6 @@ function App() {
   window.addEventListener('beforeunload', (even)=>{
     even.preventDefault();
     window.localStorage.removeItem("token");
-
   })
   return (
     <div className="App">

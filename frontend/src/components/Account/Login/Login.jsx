@@ -12,7 +12,7 @@ import { useEffect } from "react";
 const Login = () => {
   const [nameInput, setNameInput] = useState("");
   const [passInput, setPassInput] = useState("");
-
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const { googleSignIn, user } = UserAuth();
@@ -47,6 +47,7 @@ const Login = () => {
       .then((res) => {
         if (res.data == null) {
           console.log("null");
+          setError("Email hoặc mật khẩu không đúng!")
         } else {
           // console.log(res.data);
           window.localStorage.setItem("token", res.data);
@@ -55,6 +56,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error.data);
+        setError("Email hoặc mật khẩu không đúng!")
       });
     
       
@@ -94,6 +96,9 @@ const Login = () => {
           >
             Đăng nhập
           </button>
+          <div>
+            {error!=="" && <p className="errorLoginMessage">{error}</p>}
+          </div>
           <div className="span">
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>
