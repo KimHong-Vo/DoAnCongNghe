@@ -117,18 +117,18 @@ const NavigationBar = () => {
   const [isOpenCreatingWorkSpace, setIsOpenCreatingWorkSpace] =
     React.useState(false);
 
-    const handleLogOutBasic = async (e) => {
-      e.preventDefault();
-      let token = await window.localStorage.getItem("token");
-      
-      axios.get("http://localhost:8080/account/logout", {
-        responseType: "json",
-          headers: { Authorization: token },
-      });
-      window.localStorage.removeItem("token");
-      setUserName("");
-      navigate("/login");
-    }
+  const handleLogOutBasic = async (e) => {
+    e.preventDefault();
+    let token = await window.localStorage.getItem("token");
+
+    axios.get("http://localhost:8080/account/logout", {
+      responseType: "json",
+      headers: { Authorization: token },
+    });
+    window.localStorage.removeItem("token");
+    setUserName("");
+    navigate("/login");
+  };
 
   async function getFunctionName() {
     let token = await window.localStorage.getItem("token");
@@ -159,7 +159,9 @@ const NavigationBar = () => {
       </span>
 
       <span className={styles.logo}>
-        <icons.logoTrello />
+        <Link to="/">
+          <icons.logoTrello />
+        </Link>
       </span>
 
       <div className={styles.btnAppBar}>
