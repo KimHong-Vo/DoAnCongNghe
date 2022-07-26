@@ -30,10 +30,10 @@ public class Tag implements Serializable{
 	private int position;
 	
 	// reference table
-//	@ManyToOne
-//	@JoinColumn(name = "user_id", nullable = false)
-//	private User owner;
-//	
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
+	private User owner;
+	
 	@ManyToOne
 	@JoinColumn(name = "list_id", nullable = false)
 	private ListInTable list;
@@ -106,13 +106,13 @@ public class Tag implements Serializable{
 		this.position = position;
 	}
 
-//	public User getOwner() {
-//		return owner;
-//	}
-//
-//	public void setOwner(User owner) {
-//		this.owner = owner;
-//	}
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
 
 	public ListInTable getList() {
 		return list;

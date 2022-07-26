@@ -19,9 +19,9 @@ public class ListInTable {
 	private int position;
 	
 	//reference table
-//	@ManyToOne
-//	@JoinColumn(name = "user_id" ,nullable = false)//, nullable = false
-//	private User owner;
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
+	private User owner;
 	
 	@ManyToOne
 	@JoinColumn(name = "table_id", nullable = false)
@@ -61,13 +61,13 @@ public class ListInTable {
 		this.position = position;
 	}
 
-//	public User getOwner() {
-//		return owner;
-//	}
-//
-//	public void setOwner(User owner) {
-//		this.owner = owner;
-//	}
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
 
 	public Table getTable() {
 		return table;
