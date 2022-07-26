@@ -18,6 +18,7 @@ function App() {
       <AuthContextProvider>
         <Routes>
           <Route path="/" element={<Home title="Home" />} />
+          <Route path="/detailtable" element={<DetailTable title="Detail Table"></DetailTable>}></Route>
           <Route path="/login" element={<Login />} />
           <Route path="/tablesofworkspace" element={<TablesOfWorkSpace />} />
           <Route path="/workspacedetail/1" element={<WorkSpaceDetail idSelected= {1} />} />
