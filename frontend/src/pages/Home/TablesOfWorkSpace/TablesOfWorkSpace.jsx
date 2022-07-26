@@ -11,6 +11,7 @@ import { Button } from "@mui/material";
 //import StarIcon from "@mui/icons-material/Star";
 import axios from "axios";
 import TablesOfWorkSpaceItem from "./TablesOfWorkSpaceItem";
+import { Link } from "react-router-dom";
 
 function TablesOfWorkSpace() {
   const [listTableState, setListTableState] = useState([]);
@@ -68,12 +69,12 @@ function TablesOfWorkSpace() {
               return (
                 <div className="button-board">
                   {/* <span className="board-title-fade"></span> */}
-                  <a
+                  <Link
                     className="board-title background-tableworkspace"
-                    href="action"
+                    to="/detailtable"
                   >
                     <TablesOfWorkSpaceItem key={table.id} tableProps={table} />
-                  </a>
+                  </Link>
                 </div>
               );
             })}
