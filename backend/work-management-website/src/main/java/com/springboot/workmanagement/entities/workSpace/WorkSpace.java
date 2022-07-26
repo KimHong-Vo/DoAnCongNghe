@@ -19,9 +19,9 @@ public class WorkSpace{
 	private String description;
 	private String logoPath;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "workspace")
+
+	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Table> tables = new HashSet<>();
-	
 	
 	public WorkSpace() {}
 	public WorkSpace(String name, String description) {
@@ -63,7 +63,15 @@ public class WorkSpace{
 	public void setLogoPath(String logoPath) {
 		this.logoPath = logoPath;
 	}
+	
+	
 
+	public Set<Table> getTables() {
+		return tables;
+	}
+	public void setTables(Set<Table> tables) {
+		this.tables = tables;
+	}
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

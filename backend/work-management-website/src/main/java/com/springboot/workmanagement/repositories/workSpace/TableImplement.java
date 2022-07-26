@@ -1,13 +1,16 @@
 package com.springboot.workmanagement.repositories.workSpace;
 
+
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springboot.workmanagement.entities.workSpace.ListInTable;
 import com.springboot.workmanagement.entities.workSpace.Table;
 
 @Service
@@ -35,6 +38,11 @@ public class TableImplement implements TableService{
 	public List<Table> getAllTable() {
 		// TODO Auto-generated method stub
 		return (List<Table>) tableRepository.findAll();
+	}
+
+	@Override
+	public Set<ListInTable> getAllListInTable(String tableID) {
+		return tableRepository.findById(tableID).get().getListsInTable();
 	}
 
 }

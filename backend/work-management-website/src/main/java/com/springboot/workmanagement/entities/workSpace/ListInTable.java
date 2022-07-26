@@ -1,13 +1,19 @@
 package com.springboot.workmanagement.entities.workSpace;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ListInTable {
@@ -17,17 +23,33 @@ public class ListInTable {
 	private Date createDate;
 	private String name;
 	private int position;
-	
-	//reference table
+
+	// reference table
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	private User owner;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "table_id", nullable = false)
+	@JsonIgnore
 	private Table table;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private Set<Tag> tables = new HashSet<>();
 
-	public ListInTable() {}
+	public ListInTable() {
+	}
+
+	public ListInTable(Date createDate, String name, int position, User owner) {
+		this.createDate = createDate;
+		this.position = position;
+		this.owner = owner;
+//		this.table = table;
+	}
+	
+	public ListInTable(String name) {
+		this.name = name;
+	}
 
 	public Integer getId() {
 		return id;
@@ -69,6 +91,14 @@ public class ListInTable {
 		this.owner = owner;
 	}
 
+	public Set<Tag> getTables() {
+		return tables;
+	}
+
+	public void setTables(Set<Tag> tables) {
+		this.tables = tables;
+	}
+
 	public Table getTable() {
 		return table;
 	}
@@ -76,5 +106,7 @@ public class ListInTable {
 	public void setTable(Table table) {
 		this.table = table;
 	}
+
 	
+
 }
