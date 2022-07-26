@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import TableService from "../../service/TableService";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -37,18 +38,37 @@ function a11yProps(index) {
   };
 }
 
-const workspaces = [
-  "Outline planning",
-  "Outline planning",
-  "Outline planning",
-  "Outline planning",
-  "Outline planning",
-  "Outline planning",
-  "Outline planning",
-];
+// const workspaces = [
+//   "Outline planning",
+//   "Outline planning",
+//   "Outline planning",
+//   "Outline planning",
+//   "Outline planning",
+//   "Outline planning",
+//   "Outline planning",
+// ];
 
 const WorkSpaceDetail = () => {
   const [value, setValue] = React.useState(0);
+
+  const [workspaces, setWorkspaces] = React.useState([]);
+
+  const tableService = new TableService();
+
+  function getApi () {
+    return tableService.getAll();
+  }
+
+  console.log(workspaces);
+  useEffect(() => {
+    getApi()
+      .then((res) => {
+        setWorkspaces(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -110,17 +130,17 @@ const WorkSpaceDetail = () => {
             <TabPanel value={value} index={0}>
               <div className="w-full flex flex-wrap">
                 {workspaces.map((workspace, index) => (
-                  <div className="w-[300px] h-[100px] relative ml-5 mt-2">
+                  <div key={workspace.id} className="w-[300px] h-[100px] relative ml-5 mt-2">
                     <div className="absolute w-full h-full cursor-pointer">
                       <img
                         className="rounded-lg object-cover w-[320px] h-[100px]"
-                        src="https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x312/36d4d2e3e3e90823688cb9ee4f669e31/photo-1587226513115-f1e3439f1a35.jpg"
+                        src={workspace ? workspace.background.path: ""}
                         alt="img"
                       />
                     </div>
                     <div className="w-full h-full z-20 absolute top-4">
                       <span className="font-semibold text-white p-3">
-                        Outline planning
+                        {workspace.title}
                       </span>
                     </div>
                   </div>
