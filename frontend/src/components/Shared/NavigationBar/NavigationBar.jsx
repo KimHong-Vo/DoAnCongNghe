@@ -15,7 +15,6 @@ import WorkSpaceService from "../../../service/WorkSpaceService";
 import { UserAuth } from "../../../Context/AuthContext";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { async } from "@firebase/util";
 import { useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
@@ -94,8 +93,10 @@ const NavigationBar = () => {
       });
   }, []);
 
-  const [userName, setUserName] = React.useState("");
+ 
 
+  const [userName, setUserName] = React.useState("");
+  
   const handleCreatingNew = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -301,3 +302,5 @@ const NavigationBar = () => {
 };
 
 export default NavigationBar;
+
+

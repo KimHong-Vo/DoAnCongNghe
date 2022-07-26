@@ -39,17 +39,14 @@ const Login = () => {
       url: "http://localhost:8080/account/login",
       responseType: "json",
       data: {
-        // data instead params when method isn't get
         email: nameInput,
         password: passInput,
       },
     })
       .then((res) => {
         if (res.data == null) {
-          console.log("null");
           setError("Email hoặc mật khẩu không đúng!")
         } else {
-          // console.log(res.data);
           window.localStorage.setItem("token", res.data);
           navigate("/");
         }
@@ -57,9 +54,7 @@ const Login = () => {
       .catch((error) => {
         console.log(error.data);
         setError("Email hoặc mật khẩu không đúng!")
-      });
-    
-      
+      });  
   }
   return (
     <div className="flex flex-col items-center justify-center w-full h-screen">

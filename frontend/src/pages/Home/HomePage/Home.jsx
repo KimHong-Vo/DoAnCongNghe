@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import NavigationBar from "../../../components/Shared/NavigationBar/NavigationBar";
 import Menu from "../../../components/Shared/Menu/Menu";
 import TablesOfWorkSpace from "../TablesOfWorkSpace/TablesOfWorkSpace";
@@ -8,9 +8,9 @@ const Home = (props) => {
   }, [props.title]);
 
   
+  
   return (
     <div className="w-full h-full">
-      
       <div className="w-full">
         <NavigationBar />
       </div>
